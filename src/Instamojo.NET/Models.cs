@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Instamojo.NET.Models
 {
+    // Payment Request Object
     public class PaymentRequest
     {
         public string id { get; set; }
