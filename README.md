@@ -38,11 +38,11 @@ You might also need the payment request id which you can later use to query the 
 
       PaymentRequestResponse npr = im.GetPaymentRequestStatus("[PaymentRequestId]");
 
-You can get the status of a payment request by calling the GetPaymentRequestStatus method passing the payment request id as the Parameter.
+You can get the status of a payment request by calling the `GetPaymentRequestStatus` method passing the payment request id as the Parameter.
 
 ### Object Models
 
-These are the currently available object models. They are present in the Instamojo.NET.models Namespace.
+These are the currently available object models. They are present in the `Instamojo.NET.models` Namespace.
 
      public class PaymentRequest
      {
