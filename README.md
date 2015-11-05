@@ -30,4 +30,16 @@ The PaymentRequestResponse Object contains the status of the Payment Request as 
 
      String PaymentURL = npr.payment_request.longurl;
 
+You might also need the payment request id which you can later use to query the status of the payment request. 
+
+     String PaymentRequestId = npr.payment_request.id;
+
+### Get status of a Payment Request
+
+      PaymentRequestResponse npr = im.GetPaymentRequestStatus("[PaymentRequestId]");
+
+You can get the status of a payment request by calling the GetPaymentRequestStatus method passing the payment request id as the Parameter.
+
+
+
 Further documentation is available at https://www.instamojo.com/developers/
