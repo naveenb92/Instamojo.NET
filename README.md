@@ -44,8 +44,8 @@ You can get the status of a payment request by calling the GetPaymentRequestStat
 
 These are the currently available object models. They are present in the Instamojo.NET.models Namespace.
 
- public class PaymentRequest
-    {
+     public class PaymentRequest
+     {
         public string id { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
@@ -64,22 +64,22 @@ These are the currently available object models. They are present in the Instamo
         public string created_at { get; set; }
         public string modified_at { get; set; }
         public bool allow_repeated_payments { get; set; }
-    }
+     }
 
-    public class PaymentRequestResponse
-    {
+     public class PaymentRequestResponse
+     {
         public bool success { get; set; }
         public PaymentRequest payment_request { get; set; }
-    }
+     }
 
-    public class PaymentRequestsResponse
-    {
+     public class PaymentRequestsResponse
+     {
         public bool success { get; set; }
         public List<PaymentRequest> payment_requests { get; set; }
-    }
+     }
 
-    public class Webhook
-    {
+     public class Webhook
+     {
         public string amount { get; set; }
         public string buyer { get; set; }
         public string buyer_name { get; set; }
@@ -93,6 +93,6 @@ These are the currently available object models. They are present in the Instamo
         public string purpose { get; set; }
         public string shorturl { get; set; }
         public string status { get; set; }
-    }
+     }
 
 Further documentation is available at https://www.instamojo.com/developers/
