@@ -2,6 +2,8 @@
 
 Assists you to programmatically create and list Payment Requests on Instamojo in .NET.
 
+* Requires Json.NET (7.0.1)
+
 
 ## Usage
 
