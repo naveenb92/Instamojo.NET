@@ -26,4 +26,8 @@ We will use the newly created Object to talk with the server.
      pr.purpose = "GitHub Demo";
      PaymentRequestResponse npr = im.CreatePaymentRequest(pr);
 
+The PaymentRequestResponse Object contains the status of the Payment Request as well as the returned Payment Request Object. Please see Model Definitions for more info on this. You might need the LongURL from the returned Object which is the link to the payment page that you will be sending to the client.
+
+     String PaymentURL = npr.payment_request.longurl;
+
 Further documentation is available at https://www.instamojo.com/developers/
