@@ -7,6 +7,13 @@ Assists you to programmatically create and list Payment Requests on Instamojo in
 
 ## Usage
 
+### Add reference to Instamojo.NET.dll
+
+Download the `Instamojo.NET.dll` from the build folder and add it as a reference to your project. Add the following lines to use the same. Make sure you have also added reference to Json.NET.
+
+      using Instamojo.NET;
+      using Instamojo.NET.Models;
+
 ### Initialize Instamojo
 
     Instamojo.NET.Instamojo im = new Instamojo.NET.Instamojo("[API_KEY]", "[AUTH_TOKEN]");
