@@ -51,6 +51,15 @@ The `ListPaymentRequests` method will return an object of type `PaymentRequestsR
       foreach (PaymentRequest pr in nprs.payment_requests)
                 // Do Something with pr
 
+## Available Functions
+
+You have these functions to interact with the API:
+
+  * `CreatePaymentRequest(PaymentRequest)` List all Links created by authenticated User.
+  * `GetPaymentRequestStatus(PaymentRequestId)` Get details of a Payment Request specified by its unique Payment Request ID. You may receive the Payment Request ID via `CreatePaymentRequest()` or via URL Redirect function or as a part of Webhook data.
+  * `ListPaymentRequests()` List all Payment Requests.
+  * `ListPaymentRequests(DateTime? min_created_at, DateTime? max_created_at, DateTime? min_modified_at, DateTime? max_modified_at)` List all Payment Requests post filtering them.
+
 ### Object Models
 
 These are the currently available object models. They are present in the `Instamojo.NET.models` Namespace.
