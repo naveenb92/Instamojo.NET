@@ -42,6 +42,15 @@ You might also need the payment request id which you can later use to query the 
 
 You can get the status of a payment request by calling the `GetPaymentRequestStatus` method passing the payment request id as the Parameter.
 
+### List all Payment Requests
+
+      PaymentRequestsResponse nprs = im.ListPaymentRequests();
+
+The `ListPaymentRequests` method will return an object of type `PaymentRequestsResponse`. All the payment requests are present in the list `payment_requests`.
+
+      foreach (PaymentRequest pr in nprs.payment_requests)
+                // Do Something with pr
+
 ### Object Models
 
 These are the currently available object models. They are present in the `Instamojo.NET.models` Namespace.
