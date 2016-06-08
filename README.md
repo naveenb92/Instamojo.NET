@@ -66,8 +66,35 @@ The `GetPaymentRequests` method will return a List of objects of type `PaymentRe
 
 The `GetPayment` method will return an object of type `Payment`. 
 
+### Create a Refund
 
+     Refund refund = new Refund();
+     refund.payment_id = "MOJOb023488902249";
+     refund.type = RefundType.RFD;
+     refund.refund_amount = "10";
+     refund.body = "Testing Refunds";
+     Refund newRefund = await im.CreateRefund(refund);
 
+The `CreateRefund` method returns a new Refund Object which will contain `id`. Please see Model Definitions for more info on this. 
+
+You might need the refund id which you can later use to query the status of the refund. 
+
+     String RefundId = newRefund.id;
+
+### Get status of a Refund
+
+      Refund refund = await im.GetRefund("[RefundId]");
+
+You can get the status of a refund request by calling the `GetRefund` method passing the RefundId as the Parameter.
+
+### List all Refunds
+
+      List<Refund> refunds = await im.GetRefunds();
+
+The `GetRefunds` method will return a List of objects of type `Refund`. 
+
+      foreach (Refund refund in refunds)
+                // Do Something with refund
 
 ## Available Functions
 
@@ -76,8 +103,8 @@ You have these functions to interact with the API:
   * `CreatePaymentRequest(PaymentRequest)` Create a new payment request.
   * `GetPaymentRequests()` List all Payment Requests.
   * `GetPaymentRequest(PaymentRequestId)` Get details of a Payment Request specified by its unique Payment Request ID.
-  * `GetPayment()` Get a Payment.
-  * `CreateRefund()` Create a new refund.
+  * `GetPayment(PaymentRequestId,PaymentId)` Get a Payment.
+  * `CreateRefund(Refund)` Create a new refund.
   * `GetRefunds()` List all Refunds.
   * `GetRefund(RefundId)` Get details of a Refund specified by its unique Refund ID.
 
