@@ -60,13 +60,26 @@ The `GetPaymentRequests` method will return a List of objects of type `PaymentRe
       foreach (PaymentRequest pr in nprs)
                 // Do Something with pr
 
+### Get a Payment
+
+      Payment pr = await im.GetPayment("[PaymentRequestId]", "[PaymentId]");
+
+The `GetPayment` method will return an object of type `Payment`. 
+
+
+
+
 ## Available Functions
 
 You have these functions to interact with the API:
 
-  * `CreatePaymentRequest(PaymentRequest)` List all Links created by authenticated User.
-  * `GetPaymentRequest(PaymentRequestId)` Get details of a Payment Request specified by its unique Payment Request ID. You may receive the Payment Request ID via `CreatePaymentRequest()` or via URL Redirect function or as a part of Webhook data.
+  * `CreatePaymentRequest(PaymentRequest)` Create a new payment request.
   * `GetPaymentRequests()` List all Payment Requests.
+  * `GetPaymentRequest(PaymentRequestId)` Get details of a Payment Request specified by its unique Payment Request ID.
+  * `GetPayment()` Get a Payment.
+  * `CreateRefund()` Create a new refund.
+  * `GetRefunds()` List all Refunds.
+  * `GetRefund(RefundId)` Get details of a Refund specified by its unique Refund ID.
 
 ### Object Models
 
@@ -93,18 +106,64 @@ These are the currently available object models. They are present in the `Instam
         public string modified_at { get; set; }
         public bool allow_repeated_payments { get; set; }
      }
-
-     public class PaymentRequestResponse
-     {
-        public bool success { get; set; }
-        public PaymentRequest payment_request { get; set; }
-     }
-
-     public class PaymentRequestsResponse
-     {
-        public bool success { get; set; }
-        public List<PaymentRequest> payment_requests { get; set; }
-     }
+    
+    public class Payment
+    {
+        public string payment_id { get; set; }
+        public int quantity { get; set; }
+        public string status { get; set; }
+        public object link_slug { get; set; }
+        public object link_title { get; set; }
+        public string buyer_name { get; set; }
+        public string buyer_phone { get; set; }
+        public string buyer_email { get; set; }
+        public string currency { get; set; }
+        public string unit_price { get; set; }
+        public string amount { get; set; }
+        public string fees { get; set; }
+        public object shipping_address { get; set; }
+        public object shipping_city { get; set; }
+        public object shipping_state { get; set; }
+        public object shipping_zip { get; set; }
+        public object shipping_country { get; set; }
+        public object discount_code { get; set; }
+        public object discount_amount_off { get; set; }
+        public List<dynamic> variants { get; set; }
+        public Dictionary<dynamic, dynamic> custom_fields { get; set; }
+        public object affiliate_id { get; set; }
+        public string affiliate_commission { get; set; }
+        public string created_at { get; set; }
+    }
+    
+    public class Refund
+    {
+        public string id { get; set; }
+        public string payment_id { get; set; }
+        public string status { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public RefundType type { get; set; }
+        public string body { get; set; }
+        public string refund_amount { get; set; }
+        public string total_amount { get; set; }
+        public string created_at { get; set; }
+    }
+    
+    public enum RefundType
+    {
+        RFD,
+        TNR,
+        QFL,
+        QNR,
+        EWN,
+        TAN,
+        PTH
+    }
+    
+    public enum PartnerFeeType
+    {
+        @fixed,
+        percentage
+    }
 
      public class Webhook
      {
