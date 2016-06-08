@@ -1,8 +1,10 @@
 # Instamojo.NET
 
-Assists you to programmatically create and list Payment Requests on Instamojo in .NET.
+Assists you to programmatically create and list Payment Requests & Refunds on Instamojo in .NET.
 
+* Requires .NET 4.5 or higher
 * Requires Json.NET (7.0.1)
+* All operations are asynchronus
 
 
 ## Usage
@@ -33,9 +35,9 @@ We will use the newly created Object to talk with the server.
      pr.redirect_url = "https://naveen.me/success";
      pr.webhook = "https://naveen.me/webhook";
      pr.purpose = "GitHub Demo";
-     PaymentRequestResponse npr = im.CreatePaymentRequest(pr);
+     PaymentRequest npr = await im.CreatePaymentRequest(pr);
 
-The PaymentRequestResponse Object contains the status of the Payment Request as well as the returned Payment Request Object. Please see Model Definitions for more info on this. You might need the LongURL from the returned Object which is the link to the payment page that you will be sending to the client.
+The `CreatePaymentRequest` method returns a new Payment Request Object which will contain `id` as well as the `longurl` for further use. Please see Model Definitions for more info on this. You might need the longurl from the returned Object which is the link to the payment page that you will be sending to the client.
 
      String PaymentURL = npr.payment_request.longurl;
 
@@ -45,17 +47,17 @@ You might also need the payment request id which you can later use to query the 
 
 ### Get status of a Payment Request
 
-      PaymentRequestResponse npr = im.GetPaymentRequestStatus("[PaymentRequestId]");
+      PaymentRequest npr = await im.GetPaymentRequest("[PaymentRequestId]");
 
-You can get the status of a payment request by calling the `GetPaymentRequestStatus` method passing the payment request id as the Parameter.
+You can get the status of a payment request by calling the `GetPaymentRequest` method passing the payment request id as the Parameter.
 
 ### List all Payment Requests
 
-      PaymentRequestsResponse nprs = im.ListPaymentRequests();
+      List<PaymentRequest> nprs = await im.GetPaymentRequests();
 
-The `ListPaymentRequests` method will return an object of type `PaymentRequestsResponse`. All the payment requests are present in the list `payment_requests`.
+The `GetPaymentRequests` method will return a List of objects of type `PaymentRequest`. 
 
-      foreach (PaymentRequest pr in nprs.payment_requests)
+      foreach (PaymentRequest pr in nprs)
                 // Do Something with pr
 
 ## Available Functions
@@ -63,9 +65,8 @@ The `ListPaymentRequests` method will return an object of type `PaymentRequestsR
 You have these functions to interact with the API:
 
   * `CreatePaymentRequest(PaymentRequest)` List all Links created by authenticated User.
-  * `GetPaymentRequestStatus(PaymentRequestId)` Get details of a Payment Request specified by its unique Payment Request ID. You may receive the Payment Request ID via `CreatePaymentRequest()` or via URL Redirect function or as a part of Webhook data.
-  * `ListPaymentRequests()` List all Payment Requests.
-  * `ListPaymentRequests(DateTime? min_created_at, DateTime? max_created_at, DateTime? min_modified_at, DateTime? max_modified_at)` List all Payment Requests post filtering them.
+  * `GetPaymentRequest(PaymentRequestId)` Get details of a Payment Request specified by its unique Payment Request ID. You may receive the Payment Request ID via `CreatePaymentRequest()` or via URL Redirect function or as a part of Webhook data.
+  * `GetPaymentRequests()` List all Payment Requests.
 
 ### Object Models
 
