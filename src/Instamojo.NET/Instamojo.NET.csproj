@@ -46,7 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Instamojo.cs" />
-    <Compile Include="Models.cs" />
+    <Compile Include="Models\Endpoints.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\PaymentRequest.cs" />
+    <Compile Include="Models\Refund.cs" />
+    <Compile Include="Models\ResponseError.cs" />
+    <Compile Include="Models\Webhook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
